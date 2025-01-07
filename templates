@@ -21,10 +21,26 @@
             font-size: 1.5em;
             color: blue;
         }
+        select {
+            font-size: 1.2em;
+            padding: 5px;
+        }
     </style>
 </head>
 <body>
-    <h1>سعر العملة الحالي:</h1>
+    <h1>تحليل سعر العملة</h1>
+    
+    <!-- مربع اختيار العملة -->
+    <form method="POST">
+        <label for="crypto_id">اختر العملة:</label>
+        <select name="crypto_id" id="crypto_id" onchange="this.form.submit()">
+            {% for id, name in crypto_ids.items() %}
+                <option value="{{ id }}" {% if id == selected_crypto %}selected{% endif %}>{{ name }}</option>
+            {% endfor %}
+        </select>
+    </form>
+
+    <h2>سعر العملة الحالي:</h2>
     <p class="price">${{ current_price }}</p>
     <h2>الاتجاه:</h2>
     <p class="trend">{{ trend }}</p>
