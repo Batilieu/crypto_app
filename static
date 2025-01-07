@@ -1,10 +1,17 @@
 // يمكنك إضافة وظائف JavaScript هنا لتحديث البيانات تلقائيًا
 function updateData() {
-    fetch('/')
-        .then(response => response.text())
-        .then(data => {
-            document.body.innerHTML = data;
-        });
+    const selectedCrypto = document.getElementById('crypto_id').value;
+    fetch('/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `crypto_id=${selectedCrypto}`
+    })
+    .then(response => response.text())
+    .then(data => {
+        document.body.innerHTML = data;
+    });
 }
 
 // تحديث البيانات كل 60 ثانية
